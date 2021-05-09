@@ -176,9 +176,15 @@ Page({
         })
     },
     saveImg(){
-        wx.saveImageToPhotosAlbum({
-            filePath: this.data.showImg
-        })
+        wx.downloadFile({
+            url: this.data.showImg,
+            success:function(res){
+            let path = res.tempFilePath
+             wx.saveImageToPhotosAlbum({
+                filePath: path
+            })
+            }
+       })
     },
     choseImg() {
         var that = this
